@@ -21,27 +21,26 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Funcionário A</td>
-            <td>Cargo A</td>
+          <?php 
+          $sql = 'SELECT f.FuncionarioID, f.Nome AS "NomeFuncionario", c.Nome AS "NomeCargo" FROM funcionarios AS f INNER JOIN cargos AS c ON f.CargoID = c.CargoID;';
+          $resultado = mysqli_query($conexao, $sql);
+
+          while($dados = mysqli_fetch_assoc($resultado)) {
+            ?>
+            <tr>
+            <td><?php echo $dados['FuncionarioID'];?></td>
+            <td><?php echo $dados['NomeFuncionario'];?></td>
+            <td><?php echo $dados['NomeCargo'];?></td>
+  
             <td>Setor A</td>
             <td>
               <a href="#" class="btn btn-edit">Editar</a>
               <a href="#" class="btn btn-delete">Excluir</a>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Funcionário B</td>
-            <td>Cargo B</td>
-            <td>Setor B</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
-          
+          <?php 
+          }
+        ?>
         </tbody>
       </table>
     </div>
