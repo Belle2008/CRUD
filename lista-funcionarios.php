@@ -21,8 +21,9 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <?php 
-          $sql = 'SELECT f.FuncionarioID, f.Nome AS "NomeFuncionario", c.Nome AS "NomeCargo" FROM funcionarios AS f INNER JOIN cargos AS c ON f.CargoID = c.CargoID;';
+          <?php $sql = 'SELECT  f.FuncionarioID,  f.Nome AS NomeFuncionario, c.Nome AS NomeCargo, s.Nome AS NomeSetor
+FROM funcionarios AS f INNER JOIN cargos AS c ON f.CargoID = c.CargoID INNER JOIN setor AS s ON f.SetorID = s.SetorID;';
+          
           $resultado = mysqli_query($conexao, $sql);
 
           while($dados = mysqli_fetch_assoc($resultado)) {
@@ -32,10 +33,10 @@ include_once './include/header.php';
             <td><?php echo $dados['NomeFuncionario'];?></td>
             <td><?php echo $dados['NomeCargo'];?></td>
   
-            <td>Setor A</td>
+            <td><?php echo $dados['NomeSetor'];?></td>
             <td>
               <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
+              <a href="./action/funcionarios.php?acao=excluir&id=<?php echo $dados['FuncionarioID'];?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>
           <?php 
@@ -44,7 +45,7 @@ include_once './include/header.php';
         </tbody>
       </table>
     </div>
-
+    </main>
 <?php 
   // include dos arquivox
   include_once './include/footer.php';

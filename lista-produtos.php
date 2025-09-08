@@ -21,31 +21,30 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Produto A</td>
-            <td>Categoria A</td>
-            <td>R$ 10,00</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Produto B</td>
-            <td>Categoria B</td>
-            <td>R$ 20,00</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
+        <?php
+            $sql = 'SELECT  pr.ProdutoID, pr.Nome AS NomeProduto, pr.Preco, c.Nome AS NomeCategoria FROM produtos AS pr INNER JOIN categorias AS c ON pr.CategoriaID = c.CategoriaID';
+            $resultado = mysqli_query($conexao, $sql);
 
+            while ($dados = mysqli_fetch_assoc($resultado)) {
+              ?>
+          <tr>
+            <td><?php echo $dados['ProdutoID'];?></td>
+            <td><?php echo $dados['NomeProduto'];?></td>
+            <td><?php echo $dados['NomeCategoria'];?></td>
+            <td>R$ <?php echo $dados['Preco'];?></td>
+            <td>
+              <a href="#" class="btn btn-edit">Editar</a>
+              <a href="./action/produtos.php?acao=excluir&id=<?php echo $dados['ProdutoID'];?>" class="btn btn-delete">Excluir</a>
+            </td>
+          </tr>
+          <?php
+            }
+            ?>
         </tbody>
       </table>
     </div>
 
+  <main>  
 <?php 
   // include dos arquivox
   include_once './include/footer.php';

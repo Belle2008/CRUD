@@ -19,18 +19,18 @@ include_once './include/header.php';
           </thead>
           <tbody>
           <?php
-            $sql = 'SELECT * FROM cargos';
+            $sql = 'SELECT * FROM categorias';
             $resultado = mysqli_query($conexao, $sql);
 
             while ($dados = mysqli_fetch_assoc($resultado)) {
             ?>
             <tr>
-              <td>1</td>
-              <td>Dado A</td>
+              <td><?php echo $dados['CategoriaID'];?></td>
+              <td><?php echo $dados['Nome'];?></td>
 
               <td>
                 <a href="#" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Excluir</a>
+                <a href="./action/categorias.php?acao=excluir&id=<?php echo $dados['CategoriaID'];?>" class="btn btn-delete">Excluir</a>
               </td>
             </tr>
             <?php 
@@ -40,9 +40,7 @@ include_once './include/header.php';
         </table>
       </div>
 
-
-   
-  </main>
+      </main>
 
   <?php 
   // include dos arquivox

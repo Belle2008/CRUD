@@ -14,8 +14,18 @@ include_once './include/header.php';
           <input type="number" placeholder="Preço">
           <input type="number" placeholder="Peso (g)">
           <textarea placeholder="Descrição"></textarea>
-          <select>
-            <option value="">Categoria</option>
+
+          <?php
+          $sql = 'SELECT* FROM categorias;';
+          $resultado = mysqli_query($conexao,$sql);
+          ?>
+          <select name="" id="">
+          <option value=""> categorias</option>
+          <?php
+           while ($row = mysqli_fetch_assoc($resultado)) {
+            echo '<option value="'.$row['CategoriaID'].'">'.$row['Nome'].'</option>';
+           }
+          ?>
           </select>
           <button type="submit">Salvar</button>
         </form>

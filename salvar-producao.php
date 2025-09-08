@@ -9,12 +9,33 @@ include_once './include/header.php';
     <div id="producao" class="tela">
         <form class="crud-form" method="post" action="">
           <h2>Cadastro de Produção de Produtos</h2>
-          <select>
-            <option value="">Funcionário</option>
+
+          <?php
+          $sql = 'SELECT* FROM funcionarios;';
+          $resultado = mysqli_query($conexao,$sql);
+          ?>
+          <select name="" id="">
+          <option value=""> funcionarios</option>
+          <?php
+           while ($row = mysqli_fetch_assoc($resultado)) {
+            echo '<option value="'.$row['FuncionarioID'].'">'.$row['Nome'].'</option>';
+           }
+          ?>
           </select>
-          <select>
-            <option value="">Produto</option>
+
+          <?php
+          $sql = 'SELECT* FROM Produtos;';
+          $resultado = mysqli_query($conexao,$sql);
+          ?>
+          <select name="" id="">
+          <option value="">Produtos</option>
+          <?php
+           while ($row = mysqli_fetch_assoc($resultado)) {
+            echo '<option value="'.$row['ProdutoID'].'">'.$row['Nome'].'</option>';
+           }
+          ?>
           </select>
+
           <label for="">Data da entrega</label>
           <input type="date" placeholder="Data da Entrega">
           <input type="number" placeholder="Quantidade Produzida">

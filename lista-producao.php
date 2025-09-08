@@ -20,34 +20,30 @@ include_once './include/header.php';
             </tr>
           </thead>
           <tbody>
+            <?php 
+              $sql = 'SELECT  p.ProducaoID, pr.Nome AS NomeProduto, p.DataProducao,p.DataEntrega FROM producao AS p INNER JOIN produtos AS pr ON p.ProdutoID = pr.ProdutoID;';
+              $resultado = mysqli_query($conexao, $sql);
+
+              while ($dados = mysqli_fetch_assoc($resultado)) {
+              ?>
             <tr>
-              <td>1</td>
-              <td>Produto A</td>
-              <td>100</td>
-              <td>2025-04-10</td>
+              <td><?php echo $dados['ProducaoID'];?></td>
+              <td><?php echo $dados['NomeProduto'];?></td>
+              <td><?php echo $dados['DataProducao'];?></td>
+              <td><?php echo $dados['DataEntrega'];?></td>
               <td>
                 <a href="#" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Excluir</a>
+                <a href="./action/producao.php?acao=excluir&id=<?php echo $dados['ProducaoID'];?>" class="btn btn-delete">Excluir</a>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Produto B</td>
-              <td>250</td>
-              <td>2025-04-12</td>
-              <td>
-                <a href="#" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Excluir</a>
-              </td>
-            </tr>
-            
+            <?php
+              }
+              ?>
           </tbody>
         </table>
       </div>
-
-
    
-  </main>
+      </main>
 
   <?php 
   // include dos arquivox
