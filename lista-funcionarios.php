@@ -21,7 +21,8 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <?php $sql = 'SELECT  f.FuncionarioID,  f.Nome AS NomeFuncionario, c.Nome AS NomeCargo, s.Nome AS NomeSetor
+          <?php 
+          $sql = 'SELECT  f.FuncionarioID,  f.Nome AS NomeFuncionario, c.Nome AS NomeCargo, s.Nome AS NomeSetor
 FROM funcionarios AS f INNER JOIN cargos AS c ON f.CargoID = c.CargoID INNER JOIN setor AS s ON f.SetorID = s.SetorID;';
           
           $resultado = mysqli_query($conexao, $sql);
@@ -35,7 +36,7 @@ FROM funcionarios AS f INNER JOIN cargos AS c ON f.CargoID = c.CargoID INNER JOI
   
             <td><?php echo $dados['NomeSetor'];?></td>
             <td>
-              <a href="#" class="btn btn-edit">Editar</a>
+              <a href="salvar-funcionarios.php?id=<?php echo $dados['FuncionarioID'];?>" class="btn btn-edit">Editar</a>
               <a href="./action/funcionarios.php?acao=excluir&id=<?php echo $dados['FuncionarioID'];?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

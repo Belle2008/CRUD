@@ -6,14 +6,20 @@ include_once './include/header.php';
 ?>
   
   <main>
+  <?php
+    $id = $_GET['id']; 
+    $sql = 'SELECT * FROM produtos WHERE ProdutoID = '.$id; 
+     $resultado = mysqli_query($conexao, $sql);
+     $dados = mysqli_fetch_assoc($resultado);
+    ?>
 
     <div id="produtos" class="tela">
         <form class="crud-form" action="" method="post">
           <h2>Cadastro de Produtos</h2>
-          <input type="text" placeholder="Nome do Produto">
-          <input type="number" placeholder="Preço">
-          <input type="number" placeholder="Peso (g)">
-          <textarea placeholder="Descrição"></textarea>
+          <input type="text" placeholder="Nome do Produto"  value="<?php echo $dados['Nome'];?>">
+          <input type="number" placeholder="Preço"  value="<?php echo $dados['Preco'];?>">
+          <input type="number" placeholder="Peso (g)"  value="<?php echo $dados['Peso'];?>">
+          <textarea placeholder="Descrição"><?php echo $dados['Descricao'];?></textarea>
 
           <?php
           $sql = 'SELECT* FROM categorias;';
@@ -23,7 +29,11 @@ include_once './include/header.php';
           <option value=""> categorias</option>
           <?php
            while ($row = mysqli_fetch_assoc($resultado)) {
-            echo '<option value="'.$row['CategoriaID'].'">'.$row['Nome'].'</option>';
+            $selecionado = '';
+            if( $row['CategoriaID'] == $dados['CategoriaID']){
+              $selecionado = 'selected';
+            }
+            echo '<option '.$selecionado.' value="'.$row['CategoriaID'].'">'.$row['Nome'].'</option>';
            }
           ?>
           </select>

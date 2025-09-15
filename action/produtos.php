@@ -5,12 +5,15 @@ include_once   '../include/conexao.php';
 
 // captura a acao dos dados
 $acao = $_GET['acao'];
+$id =  $_GET['id'];
 
 // validacao
 switch ($acao) {
-    case 'value':
-        # code...
-        break;
+    case 'excluir':
+      $sql = 'DELETE FROM produtos WHERE ProdutoID ='.$id;
+      $resultado = mysqli_query($conexao, $sql);
+      header("Location: ../lista-produtos.php");
+      break;
     
     default:
         # code...

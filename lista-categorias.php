@@ -29,7 +29,7 @@ include_once './include/header.php';
               <td><?php echo $dados['Nome'];?></td>
 
               <td>
-                <a href="#" class="btn btn-edit">Editar</a>
+                <a href="salvar-categorias.php?id=<?php echo $dados['CategoriaID'];?>" class="btn btn-edit">Editar</a>
                 <a href="./action/categorias.php?acao=excluir&id=<?php echo $dados['CategoriaID'];?>" class="btn btn-delete">Excluir</a>
               </td>
             </tr>
