@@ -21,12 +21,11 @@ include_once './include/header.php';
           <input type="date" placeholder="Data de Nascimento" value="<?php echo $dados['DataNascimento'];?>">
           <input type="email" placeholder="Email" value="<?php echo $dados['Email'];?>">
           <input type="number" placeholder="Salário" value="<?php echo $dados['Salario'];?>">
-          <?php $sexo = "F"; // exemplo, pode vir do banco ?>
-       <select name="Sexo">
-        <option value="">Sexo</option>
-          <option value="M" <?php if ($sexo == "M") echo "selected"; ?>>Masculino</option>
-           <option value="F" <?php if ($sexo == "F") echo "selected"; ?>>Feminino</option>
-      </select>
+          <select name="Sexo">
+          <option value="">Sexo</option>
+           <option value="M" <?php if ($dados['Sexo'] == "M") echo "selected"; ?>>Masculino</option>
+           <option value="F" <?php if ($dados['Sexo'] == "F") echo "selected"; ?>>Feminino</option>
+          </select>
           <input type="text" placeholder="CPF" value="<?php echo $dados['CPF'];?>">
           <input type="text" placeholder="RG" value="<?php echo $dados['RG'];?>">
 
