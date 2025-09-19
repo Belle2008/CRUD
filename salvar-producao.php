@@ -13,53 +13,49 @@ include_once './include/header.php';
 
           ?>
 
-    <div id="producao" class="tela" >
-        <form class="crud-form" method="post" action="">
-          <h2>Cadastro de Produção de Produtos</h2>
+<div id="producao" class="tela">
+    <form class="crud-form" action="./action/producao.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="acao" value="salvar">
 
-          <?php
-          $sql = 'SELECT* FROM funcionarios;';
-          $resultado = mysqli_query($conexao,$sql);
-          ?>
-          <select name="" id="">
-          <option  value="">funcionarios</option>
-          <?php
-           while ($row = mysqli_fetch_assoc($resultado)) {
-            $selecionado = '';
-            if( $row['FuncionarioID'] == $dados['FuncionarioID']){
-              $selecionado = 'selected';
+        <h2>Cadastro de Produção de Produtos</h2>
+
+        <?php
+        // Select de funcionários
+        $sql = 'SELECT * FROM funcionarios;';
+        $resultado = mysqli_query($conexao, $sql);
+        ?>
+        <select name="funcionarioID" required>
+            <option value="">Selecione um funcionário</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                $selecionado = ($row['FuncionarioID'] == $dados['FuncionarioID']) ? 'selected' : '';
+                echo '<option '.$selecionado.' value="'.$row['FuncionarioID'].'">'.$row['Nome'].'</option>';
             }
-            echo '<option '.$selecionado.' value="'.$row['FuncionarioID'].'">'.$row['Nome'].'</option>';
-           }
-          ?>
-          </select>
-          <?php
-          $sql = 'SELECT* FROM produtos;';
-          $resultado = mysqli_query($conexao,$sql);
-          ?>
-          <select name="" id="">
-          <option value="">Produtos</option>
-          <?php
-           while ($row = mysqli_fetch_assoc($resultado)) {
-            $selecionado = '';
-            if( $row['ProdutoID'] == $dados['ProdutoID']){
-              $selecionado = 'selected';
+            ?>
+        </select>
+
+        <?php
+        // Select de produtos
+        $sql = 'SELECT * FROM produtos;';
+        $resultado = mysqli_query($conexao, $sql);
+        ?>
+        <select name="produtoID" required>
+            <option value="">Selecione um produto</option>
+            <?php
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                $selecionado = ($row['ProdutoID'] == $dados['ProdutoID']) ? 'selected' : '';
+                echo '<option '.$selecionado.' value="'.$row['ProdutoID'].'">'.$row['Nome'].'</option>';
             }
-            echo '<option '.$selecionado.' value="'.$row['ProdutoID'].'">'.$row['Nome'].'</option>';
+            ?>
+        </select>
 
-           }
-          ?>
-          </select>
+        <label>Data de Produção:</label>
+        <input type="date" name="DataProducao" value="<?php echo $dados['DataProducao']; ?>" required>
 
-          <label for="">Data de Produção e Entrega</label>
-          <input type="date" placeholder="Data de Producao"  value="<?php echo $dados['DataProducao'];?>">
-          <input type="date" placeholder="Data de Entrega" value="<?php echo $dados['DataEntrega'];?>">
-          <button type="submit">Salvar</button>
-        </form>
-      </div>
-   
-  </main>
-  <?php 
-  // include dos arquivox
-  include_once './include/footer.php';
-  ?>
+        <label>Data de Entrega:</label>
+        <input type="date" name="DataEntrega" value="<?php echo $dados['DataEntrega']; ?>" required>
+
+        <button type="submit">Salvar</button>
+    </form>
+</div>

@@ -18,11 +18,15 @@ $dados = mysqli_fetch_assoc($resultado);
 ?>
 
     <div id="setores" class="tela">
-        <form class="crud-form" method="post" action="">
+        <form class="crud-form" action="./action/setores.php" method="post">
+      <input type="hidden" name="id" value="<?php echo $id;?>">
+      <input type="hidden" name="acao" value="salvar">
+>
+
           <h2>Cadastro de Setores</h2>
-          <input type="text" placeholder="Nome do Setor" value="<?php echo $dados['Nome'];?>">
-          <input type="text" placeholder="Andar"  value="<?php echo $dados['Andar'];?>">
-          <input type="text" placeholder="Cor"  value="<?php echo $dados['Cor'];?>">
+          <input type="text" name="Nome" placeholder="Nome do Setor" value="<?php echo $dados['Nome'];?>">
+          <input type="text" name="Andar" placeholder="Andar"  value="<?php echo $dados['Andar'];?>">
+          <input type="text" name="Cor" placeholder="Cor"  value="<?php echo $dados['Cor'];?>">
           <button type="submit">Salvar</button>
         </form>
       </div>

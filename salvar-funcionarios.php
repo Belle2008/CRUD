@@ -15,25 +15,30 @@ include_once './include/header.php';
     ?>
 
     <div id="funcionarios" class="tela">
-        <form class="crud-form">
+        <form class="crud-form"  action="./action/funcionarios.php" method="post">
+      <input type="hidden" name="id" value="<?php echo $id;?>">
+      <input type="hidden" name="acao" value="salvar">
+>
+
+
           <h2>Cadastro de Funcionários</h2>
-          <input type="text" placeholder="Nome" value="<?php echo $dados['Nome'];?>">
-          <input type="date" placeholder="Data de Nascimento" value="<?php echo $dados['DataNascimento'];?>">
-          <input type="email" placeholder="Email" value="<?php echo $dados['Email'];?>">
-          <input type="number" placeholder="Salário" value="<?php echo $dados['Salario'];?>">
-          <select name="Sexo">
+          <input type="text" name="Nome" placeholder="Nome" value="<?php echo $dados['Nome'];?>">
+          <input type="date" name="DataNascimento" value="<?php echo $dados['DataNascimento'];?>">
+          <input type="email" name="Email" value="<?php echo $dados['Email'];?>">
+          <input type="number" name="Salario" value="<?php echo $dados['Salario'];?>">
+     <select name="Sexo">
           <option value="">Sexo</option>
-           <option value="M" <?php if ($dados['Sexo'] == "M") echo "selected"; ?>>Masculino</option>
-           <option value="F" <?php if ($dados['Sexo'] == "F") echo "selected"; ?>>Feminino</option>
-          </select>
-          <input type="text" placeholder="CPF" value="<?php echo $dados['CPF'];?>">
-          <input type="text" placeholder="RG" value="<?php echo $dados['RG'];?>">
+          <option value="M" <?php if ($dados['Sexo'] == "M") echo "selected"; ?>>Masculino</option>
+         <option value="F" <?php if ($dados['Sexo'] == "F") echo "selected"; ?>>Feminino</option>
+     </select>
+         <input type="text" name="CPF" value="<?php echo $dados['CPF'];?>">
+         <input type="text" name="RG" value="<?php echo $dados['RG'];?>">
 
           <?php
           $sql = 'SELECT* FROM cargos;';
           $resultado = mysqli_query($conexao,$sql);
           ?>
-          <select name="" id="">
+          <select name="CargoID" id="">
           <option value=""> - Selecione - </option>
           <?php
            while ($row = mysqli_fetch_assoc($resultado)) {
@@ -50,7 +55,7 @@ include_once './include/header.php';
           $sql = 'SELECT* FROM setor;';
           $resultado = mysqli_query($conexao,$sql);
           ?>
-          <select name="" id="">
+          <select name="SetorID" id="">
           <option value=""> - Selecione - </option>
           <?php
            while ($row = mysqli_fetch_assoc($resultado)) {

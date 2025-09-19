@@ -22,7 +22,7 @@ switch ($acao) {
         $nome = $_POST['nome'];
         $teto_salarial = $_POST['teto_salarial'];
 
-        if (!empty($id)) {
+        if (empty($id)) {
           // INSERT
           $sql = "INSERT INTO cargos (Nome, TetoSalarial) 
                   VALUES ('{$nome}', '{$teto_salarial}')";
@@ -32,7 +32,9 @@ switch ($acao) {
                      SET Nome = '{$nome}', 
                          TetoSalarial = '{$teto_salarial}' 
                    WHERE CargoID = $id";
+                   
       }
+      
        mysqli_query($conexao,$sql);
        //redirecionar a pagina
        header("Location: ../lista-cargos.php");
