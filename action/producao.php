@@ -16,28 +16,29 @@ switch ($acao) {
       break;
 
       case 'salvar':
-        $nome = $_POST['Nome'];
-        $andar = $_POST['Andar'];
-        $cor = $_POST['Cor'];
-
+        $funcionarioID = $_POST['funcionarioID'];
+        $produtoID = $_POST['produtoID'];
+        $DataProducao = $_POST['DataProducao'];
+        $DataEntrega = $_POST['DataEntrega'];
+    
         if (empty($id)) {
-          // INSERT
-          $sql = "INSERT INTO setor (Nome, Andar, Cor) 
-                  VALUES ('{$nome}', '{$andar}', '{$cor}')";
-      } else {
-          // UPDATE
-          $sql = "UPDATE setor 
-                     SET Nome = '{$nome}', 
-                         Andar = '{$andar}', 
-                         Cor = '{$cor}'
-                   WHERE SetorID = $id";
-                   
-      }
-      
-       mysqli_query($conexao,$sql);
-       //redirecionar a pagina
-       header("Location: ../lista-producao.php");
-        break;
+            // INSERT
+            $sql = "INSERT INTO producao (FuncionarioID, ProdutoID, DataProducao, DataEntrega) 
+                    VALUES ('{$funcionarioID}', '{$produtoID}', '{$DataProducao}', '{$DataEntrega}')";
+        } else {
+            // UPDATE
+            $sql = "UPDATE producao 
+                       SET FuncionarioID = '{$funcionarioID}', 
+                           ProdutoID = '{$produtoID}', 
+                           DataProducao = '{$DataProducao}', 
+                           DataEntrega = '{$DataEntrega}'
+                     WHERE ProducaoID = $id";
+        }
+    
+     mysqli_query($conexao,$sql);
+     //redirecionar a pagina
+     header("Location: ../lista-producao.php");
+      break;
 
     default:
         # code...

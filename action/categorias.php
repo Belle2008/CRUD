@@ -16,29 +16,27 @@ switch ($acao) {
         break;
 
         case 'salvar':
-            $funcionarioID = $_POST['funcionarioID'];
-            $produtoID = $_POST['produtoID'];
-            $DataProducao = $_POST['DataProducao'];
-            $DataEntrega = $_POST['DataEntrega'];
+            $Nome = $_POST['Nome'];
+            $Descricao = $_POST['Descricao'];
         
             if (empty($id)) {
                 // INSERT
-                $sql = "INSERT INTO producao (FuncionarioID, ProdutoID, DataProducao, DataEntrega) 
-                        VALUES ('{$funcionarioID}', '{$produtoID}', '{$DataProducao}', '{$DataEntrega}')";
+                $sql = "INSERT INTO categorias (Nome, Descricao) 
+                        VALUES ('{$Nome}', '{$Descricao}')";
             } else {
                 // UPDATE
-                $sql = "UPDATE producao 
-                           SET FuncionarioID = '{$funcionarioID}', 
-                               ProdutoID = '{$produtoID}', 
-                               DataProducao = '{$DataProducao}', 
-                               DataEntrega = '{$DataEntrega}'
-                         WHERE ProducaoID = $id";
+                $sql = "UPDATE categorias 
+                           SET Nome = '{$Nome}', 
+                               Descricao = '{$Descricao}'
+                         WHERE CategoriaID = $id";
             }
         
-         mysqli_query($conexao,$sql);
-         //redirecionar a pagina
-         header("Location: ../lista-producao.php");
-          break;
+            mysqli_query($conexao, $sql);
+        
+            // redirecionar a pagina
+            header("Location: ../lista-categorias.php");
+            break;
+        
         
     default:
         # code...

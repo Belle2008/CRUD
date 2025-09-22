@@ -6,13 +6,23 @@ include_once './include/header.php';
 ?>
   <main>
   <?php
-          $id = $_GET['id'];
+    $id = '';
+    $FuncionarioID = '';
+    $ProdutoID = '';
+    $DataProducao = '';
+    $DataEntrega = '';
+    if( isset($_GET['id'])){
+        $id = $_GET['id'];
           $sql = 'SELECT * FROM producao WHERE ProducaoID='.$id;
            $resultado = mysqli_query($conexao, $sql);
            $dados = mysqli_fetch_assoc($resultado);
-
-          ?>
-
+           $FuncionarioID =  $dados['FuncionarioID'];
+           $ProdutoID = $dados['ProdutoID'];
+           $DataProducao = $dados['DataProducao'];
+           $DataEntrega =  $dados['DataEntrega'];
+  }
+    ?>
+ 
 <div id="producao" class="tela">
     <form class="crud-form" action="./action/producao.php" method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -29,7 +39,7 @@ include_once './include/header.php';
             <option value="">Selecione um funcionário</option>
             <?php
             while ($row = mysqli_fetch_assoc($resultado)) {
-                $selecionado = ($row['FuncionarioID'] == $dados['FuncionarioID']) ? 'selected' : '';
+                $selecionado = ($row['FuncionarioID'] == $FuncionarioID) ? 'selected' : '';
                 echo '<option '.$selecionado.' value="'.$row['FuncionarioID'].'">'.$row['Nome'].'</option>';
             }
             ?>
@@ -44,17 +54,17 @@ include_once './include/header.php';
             <option value="">Selecione um produto</option>
             <?php
             while ($row = mysqli_fetch_assoc($resultado)) {
-                $selecionado = ($row['ProdutoID'] == $dados['ProdutoID']) ? 'selected' : '';
+                $selecionado = ($row['ProdutoID'] == $ProdutoID) ? 'selected' : '';
                 echo '<option '.$selecionado.' value="'.$row['ProdutoID'].'">'.$row['Nome'].'</option>';
             }
             ?>
         </select>
 
         <label>Data de Produção:</label>
-        <input type="date" name="DataProducao" value="<?php echo $dados['DataProducao']; ?>" required>
+        <input type="date" name="DataProducao" value="<?php echo $DataProducao; ?>" required>
 
         <label>Data de Entrega:</label>
-        <input type="date" name="DataEntrega" value="<?php echo $dados['DataEntrega']; ?>" required>
+        <input type="date" name="DataEntrega" value="<?php echo $DataEntrega; ?>" required>
 
         <button type="submit">Salvar</button>
     </form>
