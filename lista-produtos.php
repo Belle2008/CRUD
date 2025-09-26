@@ -31,7 +31,7 @@ include_once './include/header.php';
             <td><?php echo $dados['ProdutoID'];?></td>
             <td><?php echo $dados['NomeProduto'];?></td>
             <td><?php echo $dados['NomeCategoria'];?></td>
-            <td>R$ <?php echo $dados['Preco'];?></td>
+            <td>R$ <?php echo number_format($dados['Preco'],2,',','.');?></td>
             <td>
               <a href="salvar-produtos.php?id=<?php echo $dados['ProdutoID'];?>" class="btn btn-edit">Editar</a>
               <a href="./action/produtos.php?acao=excluir&id=<?php echo $dados['ProdutoID'];?>" class="btn btn-delete">Excluir</a>

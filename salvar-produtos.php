@@ -35,8 +35,8 @@ include_once './include/header.php';
         <h2>Cadastro de Produtos</h2>
         
         <input type="text" name="Nome" placeholder="Nome do Produto" value="<?php echo $Nome; ?>">
-        <input type="number" name="Preco" placeholder="Preço" value="<?php echo $Preco; ?>">
-        <input type="number" name="Peso" placeholder="Peso (g)" value="<?php echo $Peso; ?>">
+        <input type="text" name="Preco" placeholder="Preço"  value="<?php echo 'R$ '.number_format((float)$Preco, 2, ',', '.'); ?>">
+        <input type="number" name="Peso" placeholder="Peso" value="<?php echo  $Peso * 1000; ?>"> 
         <textarea name="Descricao" placeholder="Descrição"><?php echo $Descricao; ?></textarea>
 
         <?php

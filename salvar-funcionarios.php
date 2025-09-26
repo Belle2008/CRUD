@@ -56,7 +56,8 @@ if (isset($_GET['id'])) {
         <input type="text" name="Nome" placeholder="Nome" value="<?php echo $Nome; ?>">
         <input type="date" name="DataNascimento" value="<?php echo $DataNascimento; ?>">
         <input type="email" name="Email" value="<?php echo $Email; ?>">
-        <input type="number" name="Salario" value="<?php echo $Salario; ?>">
+        <input type="text" name="Salario" value="<?php echo 'R$ '.number_format((float)$Salario, 2, ',', '.'); ?>">
+
 
         <select name="Sexo">
             <option value="">Sexo</option>

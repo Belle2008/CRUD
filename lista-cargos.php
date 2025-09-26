@@ -29,7 +29,7 @@ include_once './include/header.php';
             <tr>
               <td><?php echo $dados['CargoID'];?></td>
               <td><?php echo $dados['Nome'];?></td>
-              <td>R$ <?php echo $dados['TetoSalarial'];?></td>
+              <td>R$ <?php echo number_format($dados['TetoSalarial'],2,',','.');?></td>
               <td>
                 <a href="salvar-cargos.php?id=<?php echo $dados['CargoID'];?>" class="btn btn-edit">Editar</a>
                 <a href="./action/cargos.php?acao=excluir&id=<?php echo $dados['CargoID'];?>" class="btn btn-delete">Excluir</a>

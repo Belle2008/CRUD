@@ -29,8 +29,9 @@ include_once './include/header.php';
             <tr>
               <td><?php echo $dados['ProducaoID'];?></td>
               <td><?php echo $dados['NomeProduto'];?></td>
-              <td><?php echo $dados['DataProducao'];?></td>
-              <td><?php echo $dados['DataEntrega'];?></td>
+              <td><?php echo date('d/m/Y', strtotime($dados['DataProducao'])); ?></td>
+              <td><?php echo date('d/m/Y', strtotime($dados['DataEntrega'])); ?></td>
+
               <td>
                 <a href="salvar-producao.php?id=<?php echo $dados['ProducaoID'];?>" class="btn btn-edit">Editar</a>
                 <a href="./action/producao.php?acao=excluir&id=<?php echo $dados['ProducaoID'];?>" class="btn btn-delete">Excluir</a>

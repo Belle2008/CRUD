@@ -16,11 +16,13 @@ switch ($acao) {
       break;
 
       case 'salvar':
-        $funcionarioID = $_POST['funcionarioID'];
-        $produtoID = $_POST['produtoID'];
-        $DataProducao = $_POST['DataProducao'];
-        $DataEntrega = $_POST['DataEntrega'];
+        $id = $_POST['id'];
+        $FuncionarioID = $_POST['funcionarioID'];
+        $ProdutoID = $_POST['produtoID'];
+        $DataProducao = $_POST['DataProducao']; // dd/mm/yyyy
+        $DataEntrega  = $_POST['DataEntrega'];  // dd/mm/yyyy
     
+       
         if (empty($id)) {
             // INSERT
             $sql = "INSERT INTO producao (FuncionarioID, ProdutoID, DataProducao, DataEntrega) 
@@ -35,9 +37,12 @@ switch ($acao) {
                      WHERE ProducaoID = $id";
         }
     
-     mysqli_query($conexao,$sql);
-     //redirecionar a pagina
-     header("Location: ../lista-producao.php");
+        if(mysqli_query($conexao, $sql)) {
+          header("Location: ../salvar-producao.php"); // redireciona após salvar
+          exit;
+      } else {
+          echo "Erro: " . mysqli_error($conexao);
+      }
       break;
 
     default:

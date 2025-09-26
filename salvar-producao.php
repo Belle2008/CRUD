@@ -61,10 +61,16 @@ include_once './include/header.php';
         </select>
 
         <label>Data de Produção:</label>
-        <input type="date" name="DataProducao" value="<?php echo $DataProducao; ?>" required>
+          <input type="text" name="DataProducao" 
+       value="<?php echo isset($DataProducao) ? date('d/m/Y', strtotime($DataProducao)) : ''; ?>" 
+       required 
+       placeholder="dd/mm/aaaa">
 
-        <label>Data de Entrega:</label>
-        <input type="date" name="DataEntrega" value="<?php echo $DataEntrega; ?>" required>
+      <label>Data de Entrega:</label>
+      <input type="text" name="DataEntrega" 
+       value="<?php echo isset($DataEntrega) ? date('d/m/Y', strtotime($DataEntrega)) : ''; ?>" 
+       required 
+       placeholder="dd/mm/aaaa">
 
         <button type="submit">Salvar</button>
     </form>

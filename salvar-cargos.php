@@ -21,7 +21,7 @@ if( isset($_GET['id'])){
   // converte os dados no array
   $dados = mysqli_fetch_assoc($resultado);
   $nome = $dados['Nome'];
-  $tetoSalarial = $dados['TetoSalarial'];
+  $teto_salarial = number_format($dados['TetoSalarial'], 2, ',', '.');
 }
 
 ?>
@@ -33,7 +33,7 @@ if( isset($_GET['id'])){
       
       <h2>Cadastro de Cargos</h2>
       <input type="text" placeholder="Nome do Cargo" name="nome" value="<?php echo $nome;?>">
-      <input type="number" placeholder="Teto Salarial" name="teto_salarial"  value="<?php echo $tetoSalarial;?>">
+      <input type="text" placeholder="Teto Salarial" name="teto_salarial" value="<?php echo 'R$ '.number_format((float)$tetoSalarial, 2, ',', '.'); ?>">
       <button type="submit">Salvar</button>
     </form>
   </div>
