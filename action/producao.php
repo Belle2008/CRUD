@@ -19,26 +19,28 @@ switch ($acao) {
         $id = $_POST['id'];
         $FuncionarioID = $_POST['funcionarioID'];
         $ProdutoID = $_POST['produtoID'];
-        $DataProducao = $_POST['DataProducao']; // dd/mm/yyyy
-        $DataEntrega  = $_POST['DataEntrega'];  // dd/mm/yyyy
+        $DataProducao = ($_POST['DataProducao']); // dd/mm/yyyy
+        $DataEntrega  =($_POST['DataEntrega']);   // dd/mm/yyyy
     
-       
+        $DataProducao = DateTime::createFromFormat('d/m/Y', $DataProducao)->format('Y-m-d');
+        $DataEntrega  = DateTime::createFromFormat('d/m/Y', $DataEntrega)->format('Y-m-d');
+        
         if (empty($id)) {
             // INSERT
             $sql = "INSERT INTO producao (FuncionarioID, ProdutoID, DataProducao, DataEntrega) 
-                    VALUES ('{$funcionarioID}', '{$produtoID}', '{$DataProducao}', '{$DataEntrega}')";
+                    VALUES ('{$FuncionarioID}', '{$ProdutoID}', '{$DataProducao}', '{$DataEntrega}')";
         } else {
             // UPDATE
             $sql = "UPDATE producao 
-                       SET FuncionarioID = '{$funcionarioID}', 
-                           ProdutoID = '{$produtoID}', 
+                       SET FuncionarioID = '{$FuncionarioID}', 
+                           ProdutoID = '{$ProdutoID}', 
                            DataProducao = '{$DataProducao}', 
                            DataEntrega = '{$DataEntrega}'
                      WHERE ProducaoID = $id";
         }
-    
+        
         if(mysqli_query($conexao, $sql)) {
-          header("Location: ../salvar-producao.php"); // redireciona após salvar
+          header("Location: ../lista-producao.php"); // redireciona após salvar
           exit;
       } else {
           echo "Erro: " . mysqli_error($conexao);

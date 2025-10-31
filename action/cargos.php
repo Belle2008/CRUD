@@ -25,7 +25,8 @@ switch ($acao) {
         // Remove os pontos (milhar) e substitui a vírgula por ponto (decimal)
         $teto_salarial = str_replace('.', '', $teto_salarial);
         $teto_salarial = str_replace(',', '.', $teto_salarial);
-
+        $teto_salarial  = trim(str_replace('R$','',$teto_salarial));
+      
         if (empty($id)) {
           // INSERT
           $sql = "INSERT INTO cargos (Nome, TetoSalarial) 

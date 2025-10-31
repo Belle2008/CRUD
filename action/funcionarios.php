@@ -26,6 +26,11 @@ $id = $_REQUEST['id'];
               $rg             = $_POST['RG'];
               $cargo          = $_POST['CargoID'];
               $setor          = $_POST['SetorID'];
+
+              $salario= str_replace('.', '', $salario);
+              $salario = str_replace(',', '.', $salario);
+              $salario  = trim(str_replace('R$','',$salario));
+      
       
               if (empty($id)) {
                   // INSERT

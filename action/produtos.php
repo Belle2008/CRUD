@@ -21,6 +21,10 @@ switch ($acao) {
         $Descricao = $_POST['Descricao'];
         $CategoriaID = $_POST['CategoriaID'];
 
+        $Preco= str_replace('.', '', $Preco);
+        $Preco = str_replace(',', '.', $Preco);
+        $Preco  = trim(str_replace('R$','',$Preco));
+
         if (empty($id)) {
             // INSERT
             $sql = "INSERT INTO produtos (Nome, Preco, Peso, Descricao, CategoriaID) 
